@@ -1,0 +1,21 @@
+image: docker.umiit.cn:5043/maven:3.3.9
+
+stages:
+  - test
+  - deploy
+
+run_test:
+  stage: test
+  tags:
+    - docker
+  script:
+    - mvn test
+
+run_deploy:
+  stage: deploy
+  tags:
+    - docker
+  only:
+    - tags
+  script:
+    - mvn deploy
